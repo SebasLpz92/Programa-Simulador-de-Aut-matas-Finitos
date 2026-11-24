@@ -1,8 +1,8 @@
-## 🎨 Integración del Graficado del Autómata (Asistido por Gemini IA)
+##  Integración del Graficado del Autómata (Asistido por Gemini IA)
 
 Para la representación visual del Autómata Finito Determinista ($M = (Q, \Sigma, \delta, q_0, F)$), se integró el módulo de graficado con el apoyo de la inteligencia artificial **Gemini**, manteniendo toda la lógica matemática y algorítmica del simulador en Python puro y delegando únicamente el renderizado del diagrama de estados a **Graphviz**.
 
-### 📦 Librerías y Herramientas Utilizadas
+###  Librerías y Herramientas Utilizadas
 
 * **`graphviz` (Librería externa para Python):** Construye la estructura del grafo dirigido (`Digraph`), configurando orientación horizontal (`rankdir="LR"`), estados normales (`circle`), estados de aceptación (`doublecircle`), flecha de inicio mediante un nodo invisible (`shape="none"`) y agrupación de transiciones múltiples en una misma arista.
 * **`subprocess` (Librería nativa de Python):** Ejecuta directamente el binario compilador `dot.exe` de Graphviz en Windows mediante ruta absoluta (`C:\Program Files\Graphviz\bin\dot.exe`), evitando fallos por variables de entorno (`PATH`) no reconocidas.
@@ -24,7 +24,7 @@ Para ejecutar correctamente el módulo gráfico desde cero, abre una terminal (`
 
 *(Nota: Las librerías `os` y `subprocess` pertenecen a la biblioteca estándar de Python y no requieren instalación adicional).*
 
-### 💻 Bloque de Código Implementado
+###  Bloque de Código Implementado
 
 ```python
 import os
