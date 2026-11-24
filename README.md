@@ -5,19 +5,26 @@ Para la representación visual del Autómata Finito Determinista ($M = (Q, \Sigm
 ###  Librerías y Herramientas Utilizadas
 
 * **`graphviz` (Librería externa para Python):** Construye la estructura del grafo dirigido (`Digraph`), configurando orientación horizontal (`rankdir="LR"`), estados normales (`circle`), estados de aceptación (`doublecircle`), flecha de inicio mediante un nodo invisible (`shape="none"`) y agrupación de transiciones múltiples en una misma arista.
-* **`subprocess` (Librería nativa de Python):** Ejecuta directamente el binario compilador `dot.exe` de Graphviz en Windows mediante ruta absoluta (`C:\Program Files\Graphviz\bin\dot.exe`), evitando fallos por variables de entorno (`PATH`) no reconocidas.
-* **`os` (Librería nativa de Python):** Elimina el archivo fuente temporal (`automata.gv`) tras generar la imagen y despliega automáticamente el archivo `automata_grafica.png` con el visor predeterminado de Windows (`os.startfile`).
 
-### ⚙️ Instalación de Dependencias (Windows)
+* **`subprocess` (Librería nativa de Python):** Ejecuta directamente el binario compilador `dot.exe` de Graphviz en Windows mediante ruta absoluta (`C:\Program Files\Graphviz\bin\dot.exe`), evitando fallos por variables de entorno (`PATH`) no reconocidas.
+
+* **`os` (Librería nativa de Python — *Operating System*):** Permite interactuar directamente con el sistema de archivos y el entorno gráfico de Windows una vez generado el diagrama, cumpliendo tres tareas específicas dentro de `graficar_automata()`:
+  1. **Verificación de archivo temporal (`os.path.exists("automata.gv")`):** Comprueba que el archivo de texto intermedio generado por Graphviz exista en el directorio antes de intentar eliminarlo, previniendo excepciones en tiempo de ejecución.
+  2. **Limpieza automática del directorio (`os.remove("automata.gv")`):** Elimina el archivo fuente temporal `.gv` inmediatamente después de compilar la imagen `.png`, manteniendo limpia la carpeta del proyecto sin archivos residuales.
+  3. **Apertura automática de la gráfica (`os.startfile("automata_grafica.png")`):** Invoca el visor de imágenes predeterminado de Windows para desplegar el diagrama `automata_grafica.png` en pantalla apenas termina de renderizarse.
+
+###  Instalación de Dependencias (Windows)
 
 Para ejecutar correctamente el módulo gráfico desde cero, abre una terminal (`CMD` o `PowerShell`) y ejecuta ambos comandos:
 
 1. **Instalar el paquete `graphviz` en Python:**
+
    ```cmd
    pip install graphviz
    ```
 
 2. **Instalar el motor de Graphviz en el sistema operativo (incluye `dot.exe`):**
+
    ```cmd
    winget install Graphviz.Graphviz
    ```
